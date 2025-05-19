@@ -1,103 +1,101 @@
+'use client'
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [selectedId, setSelectedId] = useState(null); // ค่าเริ่มต้นยังไม่เลือก
+
+  const selected = (id) => {
+    setSelectedId(id);
+  }
+
+  return (
+    <>
+      <div className="conMain">
+        <h1 className={`${selectedId === null ? 'hideTextBG' : 'textBG'}`}>All YOU NEED</h1>
+        <button onClick={() => selected(null)} className={`${selectedId === null ? 'hideBtnBack' : 'btnBack'}`}>BACK</button>
+        <div className={`${selectedId === null ? 'conItem' : 'hide'} ${selectedId === null ? '' : 'Item1_2'} Item1  ${selectedId === 1 ? 'show' : ""}`}>
+          <Image className={`${selectedId === null ? 'img img1' : 'img'}`} src="/Unif_AllYouNeed_Green.png" alt="Unif_AllYouNeed_Green" width={400} height={400} />
+          <div className={`${selectedId === null ? 'group_text group_text1' : 'groupTextSelected'}`}>
+            <div>
+              <p>01</p>
+              <h2>Unif <br />AllYouNeed Green</h2>
+              <div style={{ display: "flex", gap: "1rem", width: "15rem" }}>
+                <h3>Delicious Flavor</h3>
+                <h4 className={`${selectedId === null ? 'hideh4' : 'showh4'}`}>Price : 30 Bath</h4>
+              </div>
+            </div>
+            <div>
+              <h4 className={`${selectedId === null ? 'hideh4' : 'showh5'}`}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .
+              </h4>
+            </div>
+            <button className={`${selectedId === null ? 'btnView' : 'hide'}`} onClick={() => selected(1)}>View more</button>
+            <button className={`${selectedId === null ? 'hide' : 'btnAdd'}`}>Add to cart</button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className={`${selectedId === null ? 'conItem' : 'hide'} Item2 ${selectedId === null ? '' : 'Item2_2'} ${selectedId === 2 ? 'show' : ""}`}>
+          <Image className={`${selectedId === null ? 'img img2' : 'img'}`} src="/Unif_AllYouNeed_Orange.png" alt="Unif_AllYouNeed_Orange" width={400} height={400} />
+          <div className={`${selectedId === null ? 'group_text group_text2' : 'groupTextSelected'}`}>
+            <div>
+              <p>02</p>
+              <h2>Unif <br />AllYouNeed Orange</h2>
+              <div style={{ display: "flex", gap: "1rem", width: "15rem" }}>
+                <h3>Delicious Flavor</h3>
+                <h4 className={`${selectedId === null ? 'hideh4' : 'showh4'}`}>Price : 30 Bath</h4>
+              </div>
+            </div>
+            <div>
+              <h4 className={`${selectedId === null ? 'hideh4' : 'showh5'}`}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .
+              </h4>
+            </div>
+            <button className={`${selectedId === null ? 'btnView' : 'hide'}`} onClick={() => selected(2)}>View more</button>
+            <button className={`${selectedId === null ? 'hide' : 'btnAdd'}`}>Add to cart</button>
+          </div>
+        </div>
+        <div className={`${selectedId === null ? 'conItem' : 'hide'} Item3 ${selectedId === null ? '' : 'Item3_2'} ${selectedId === 3 ? 'show' : ""}`}>
+          <Image className={`${selectedId === null ? 'img img3' : 'img'}`} src="/Unif_AllYouNeed_pink.png" alt="Unif_AllYouNeed_pink" width={400} height={400} />
+          <div className={`${selectedId === null ? 'group_text group_text3' : 'groupTextSelected'}`}>
+            <div>
+              <p>03</p>
+              <h2>Unif <br />AllYouNeed Pink</h2>
+              <div style={{ display: "flex", gap: "1rem", width: "15rem" }}>
+                <h3>Delicious Flavor</h3>
+                <h4 className={`${selectedId === null ? 'hideh4' : 'showh4'}`}>Price : 30 Bath</h4>
+              </div>
+            </div>
+            <div>
+              <h4 className={`${selectedId === null ? 'hideh4' : 'showh5'}`}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .
+              </h4>
+            </div>
+            <button className={`${selectedId === null ? 'btnView' : 'hide'}`} onClick={() => selected(3)}>View more</button>
+            <button className={`${selectedId === null ? 'hide' : 'btnAdd'}`}>Add to cart</button>
+          </div>
+        </div>
+        <div className={`${selectedId === null ? 'conItem' : 'hide'} Item4 ${selectedId === null ? '' : 'Item4_2'} ${selectedId === 4 ? 'show' : ""}`}>
+          <Image className={`${selectedId === null ? 'img img4' : 'img'}`} src="/CocoDee.png" alt="CocoDee" width={400} height={400} />
+          <div className={`${selectedId === null ? 'group_text group_text4' : 'groupTextSelected'}`}>
+            <div>
+              <p>04</p>
+              <h2>Unif <br />CocoDee</h2>
+              <div style={{ display: "flex", gap: "1rem", width: "15rem" }}>
+                <h3>Coconut Flavor</h3>
+                <h4 className={`${selectedId === null ? 'hideh4' : 'showh4'}`}>Price : 30 Bath</h4>
+              </div>
+            </div>
+            <div>
+              <h4 className={`${selectedId === null ? 'hideh4' : 'showh5'}`}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .
+              </h4>
+            </div>
+            <button className={`${selectedId === null ? 'btnView' : 'hide'}`} onClick={() => selected(4)}>View more</button>
+            <button className={`${selectedId === null ? 'hide' : 'btnAdd'}`}>Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

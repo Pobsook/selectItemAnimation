@@ -10,7 +10,11 @@ export default function Home() {
   }
   return (
     <div className="conMain">
-      <h1 className={`${selectedId === null ? 'hideTextBG' : 'textBG'}`}>ALL YOU NEED</h1>
+      <div>
+        <h1 className={`${selectedId === null ? 'hideTextBG' : 'textBG'}`}>ALL YOU</h1>
+        <h1 style={{zIndex: "10"}} className={`${selectedId === null ? 'hideTextBG2' : 'textBG2'}`}>NEED</h1>
+      </div>
+      
       <button onClick={() => selected(null)} className={`${selectedId === null ? 'hideBtnBack' : 'btnBack'}`}>BACK</button>
 
       {[1, 2, 3, 4].map((id) => {
